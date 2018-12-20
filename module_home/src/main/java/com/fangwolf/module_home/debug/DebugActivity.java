@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.fangwolf.module_home.R;
+import com.fangwolf.module_home.R2;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -14,12 +15,11 @@ import butterknife.OnClick;
 
 public class DebugActivity extends AppCompatActivity {
 
-
-    @BindView(R.id.textView)
+    @BindView(R2.id.textView)
     TextView textView;
-    @BindView(R.id.btn_1)
+    @BindView(R2.id.btn_1)
     Button btn1;
-    @BindView(R.id.btn_2)
+    @BindView(R2.id.btn_2)
     Button btn2;
 
     @Override
@@ -29,14 +29,14 @@ public class DebugActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.btn_1)
+    @OnClick(R2.id.btn_1)
     public void onBtn1Clicked() {
-        textView.setText("111");
+        ARouter.getInstance().build("/home/home").navigation();
     }
 
-    @OnClick(R.id.btn_2)
+    @OnClick(R2.id.btn_2)
     public void onBtn2Clicked() {
-        ARouter.getInstance().build("/home/home").navigation();
+        ARouter.getInstance().build("/home/home2").navigation();
     }
 
 

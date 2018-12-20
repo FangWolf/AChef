@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -14,9 +15,9 @@ import butterknife.OnClick;
 @Route(path = "/home/home")
 public class HomeActivity extends AppCompatActivity {
 
-    @BindView(R.id.textView2)
+    @BindView(R2.id.textView2)
     TextView textView;
-    @BindView(R.id.btn_go)
+    @BindView(R2.id.btn_go)
     Button btnGo;
 
     @Override
@@ -26,8 +27,8 @@ public class HomeActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.btn_go)
+    @OnClick()
     public void onViewClicked() {
-        textView.setText("gogogo");
+        ARouter.getInstance().build("/home/home2").navigation();
     }
 }

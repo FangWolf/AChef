@@ -41,4 +41,6 @@ dependencies {
     api project(':library_res')
     api rootProject.ext.dependencies["arouter-api"]
     api rootProject.ext.dependencies["logger"]
+    api rootProject.ext.dependencies["butterknife"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 }
