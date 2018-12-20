@@ -1,43 +1,45 @@
 package com.fangwolf.module_home.debug;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.fangwolf.library_base.router.ActivityRouterPath;
+import com.fangwolf.library_base.ui.BaseActivity;
 import com.fangwolf.module_home.R;
-import com.fangwolf.module_home.R2;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-public class DebugActivity extends AppCompatActivity {
-
-    @BindView(R2.id.textView)
+public class DebugActivity extends BaseActivity {
     TextView textView;
-    @BindView(R2.id.btn_1)
     Button btn1;
-    @BindView(R2.id.btn_2)
     Button btn2;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_debug);
-        ButterKnife.bind(this);
+    protected int setLayoutID() {
+        return R.layout.activity_debug;
     }
 
-    @OnClick(R2.id.btn_1)
-    public void onBtn1Clicked() {
-        ARouter.getInstance().build("/home/home").navigation();
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        textView = findViewById(R.id.textView);
+        btn1 = findViewById(R.id.btn_1);
+        btn2 = findViewById(R.id.btn_2);
+        setonClickListener( btn1, btn2);
     }
 
-    @OnClick(R2.id.btn_2)
-    public void onBtn2Clicked() {
-        ARouter.getInstance().build("/home/home2").navigation();
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+
     }
 
-
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        if (id == R.id.btn_1) {
+            ARouter.getInstance().build(ActivityRouterPath.Home.HOME_1).navigation();
+        } else if (id == R.id.btn_2) {
+            ARouter.getInstance().build(ActivityRouterPath.Home.HOME_2).navigation();
+        }
+    }
 }

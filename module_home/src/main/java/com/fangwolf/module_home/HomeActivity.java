@@ -2,33 +2,42 @@ package com.fangwolf.module_home;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.fangwolf.library_base.router.ActivityRouterPath;
+import com.fangwolf.library_base.ui.BaseActivity;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-@Route(path = "/home/home")
-public class HomeActivity extends AppCompatActivity {
-
-    @BindView(R2.id.textView2)
+@Route(path = ActivityRouterPath.Home.HOME_1)
+public class HomeActivity extends BaseActivity {
     TextView textView;
-    @BindView(R2.id.btn_go)
     Button btnGo;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        ButterKnife.bind(this);
+    protected int setLayoutID() {
+        return R.layout.activity_home;
     }
 
-    @OnClick()
-    public void onViewClicked() {
-        ARouter.getInstance().build("/home/home2").navigation();
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        textView = findViewById(R.id.textView2);
+        btnGo = findViewById(R.id.btn_go);
+        setonClickListener(btnGo);
+    }
+
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        if (id == R.id.btn_go) {
+            ARouter.getInstance().build("/home/home2").navigation();
+        }
     }
 }

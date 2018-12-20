@@ -8,16 +8,12 @@ import android.view.View;
 
 import com.orhanobut.logger.Logger;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 /**
  * @Auther 獠牙血狼
  * @Date 2018/12/20
  * @Desc 基础Activity
  */
-public abstract class BaseActivity extends AppCompatActivity {
-    private Unbinder unbinder;
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,7 +25,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         initView(savedInstanceState);
         initData(savedInstanceState);
-        unbinder = ButterKnife.bind(this);
     }
 
     protected abstract int setLayoutID();
@@ -37,6 +32,17 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void initView(Bundle savedInstanceState);
 
     protected abstract void initData(Bundle savedInstanceState);
+
+    /**
+     * 批量设置监听
+     *
+     * @param views
+     */
+    protected void setonClickListener(View... views) {
+        for (View view : views) {
+            view.setOnClickListener(this);
+        }
+    }
 
     /**
      * 隐藏控件
@@ -74,6 +80,5 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unbinder.unbind();
     }
 }
