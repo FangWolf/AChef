@@ -12,7 +12,7 @@ android {
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
-            if (isModule.toBoolean()) {
+            if (isAlone.toBoolean()) {
                 //独立运行
 
             } else {
@@ -37,6 +37,8 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api rootProject.ext.support["appcompat-v7"]
+    api rootProject.ext.support["support-v4"]
     api project(':library_res')
     api rootProject.ext.dependencies["arouter-api"]
+    api rootProject.ext.dependencies["logger"]
 }

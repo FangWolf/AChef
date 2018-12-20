@@ -13,8 +13,16 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        initARouter();
+    }
+
+    /**
+     * 初始化ARouter
+     */
+    private void initARouter() {
         ARouter.openDebug();
         ARouter.openLog();
         ARouter.init(this);
     }
+
 }

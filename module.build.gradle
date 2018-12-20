@@ -1,9 +1,10 @@
-if (isModule.toBoolean()) {
+if (isAlone.toBoolean()) {
     //作为独立App应用运行
     apply plugin: 'com.android.application'
 } else {
     //作为组件运行
     apply plugin: 'com.android.library'
+    apply plugin: 'com.jakewharton.butterknife'
 }
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -20,11 +21,15 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
     }
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
-            if (isModule.toBoolean()) {
+            if (isAlone.toBoolean()) {
                 //独立运行
                 manifest.srcFile 'src/main/alone/AndroidManifest.xml'
             } else {
@@ -46,6 +51,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    dependencies {
+        implementation rootProject.ext.dependencies["butterknife"]
+        annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     }
 }
 
