@@ -8,6 +8,8 @@ import android.view.View;
 
 import com.orhanobut.logger.Logger;
 
+import org.greenrobot.eventbus.EventBus;
+
 /**
  * @Auther 獠牙血狼
  * @Date 2018/12/20
@@ -32,6 +34,13 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected abstract void initView(Bundle savedInstanceState);
 
     protected abstract void initData(Bundle savedInstanceState);
+
+    /**
+     * 注册EventBus监听
+     */
+    public void registerEventBus() {
+        EventBus.getDefault().register(this);
+    }
 
     /**
      * 批量设置监听
@@ -80,5 +89,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

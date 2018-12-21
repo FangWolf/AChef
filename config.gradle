@@ -35,6 +35,10 @@ ext {
             "butterknife"           : "com.jakewharton:butterknife:9.0.0-rc2",
             "butterknife-compiler"  : "com.jakewharton:butterknife-compiler:9.0.0-rc2",
             //底部导航栏
-            "pager-bottom-tab-strip": 'me.majiajie:pager-bottom-tab-strip:2.3.0'
+            "pager-bottom-tab-strip": 'me.majiajie:pager-bottom-tab-strip:2.3.0',
+            //屏幕适配
+            "autosize"              : 'me.jessyan:autosize:1.1.1',
+            //EventBus
+            "eventbus"              : 'org.greenrobot:eventbus:3.1.1'
     ]
 }
